@@ -12,7 +12,6 @@ let words = ["abbey",
     "after"];
 
 var word = words[Math.floor(Math.random() * (words.length - 0 + 1) + 0)];
-document.querySelector(".env").innerText = word;
 
 let wordArr = [];
 
@@ -23,9 +22,7 @@ let sessionStep = 1;
 let letterStep = 1;
 
 const handleEnter = (key) =>{
-    console.log(key)
     if(key.code == "Enter"){
-        console.log(letterStep)
         if(letterStep < 6)
             handleOnSubmit();
     }
@@ -43,9 +40,8 @@ const handleOnSubmit = (e) => {
 
     wordArr.push(letter1, letter2, letter3, letter4, letter5);
 
-    // did he guess the word?
-    let colours = checkWord(letter1 + letter2 + letter3 + letter4 + letter5);
-
+    // did they guess the word?
+    let colours = getWordColours(letter1 + letter2 + letter3 + letter4 + letter5);
 
     // style page
     let letter = 1;
@@ -54,20 +50,12 @@ const handleOnSubmit = (e) => {
         letter++;
     });
 
-    console.log(letterStep)
     if(letterStep == 6){
-        console.log("finished")
         wordRow.querySelector(`.letter-1`).disabled = true;
         wordRow.querySelector(`.letter-2`).disabled = true;
         wordRow.querySelector(`.letter-3`).disabled = true;
         wordRow.querySelector(`.letter-4`).disabled = true;
         wordRow.querySelector(`.letter-5`).disabled = true;
-    }
-
-    if (sessionStep == 5) {
-        // if letter is right, wins
-
-        // if letter is wrong, lose game
     }
 
     sessionStep++;
@@ -76,55 +64,37 @@ const handleOnSubmit = (e) => {
         document.querySelector(`.word-${sessionStep}`).querySelector(".letter-1").focus();
         letterStep = 1;
     }
-    
-    
 }
 
 const handleTypeInput = (e) => {
-    console.log(e)
-    console.log()
-    
-    if(/^[a-zA-Z]+$/.test(e.key) && e.key != "Backspace" && e.key != "Enter"){
-        console.log("yeaaah")
+    e.target.value = "";
+    if(/^[a-zA-Z]+$/.test(e.key) && e.key.length == 1){
         if(letterStep < 5){
             letterStep++;
             document.querySelector(`.word-${sessionStep}`).querySelector(`.letter-${letterStep}`).focus();
         }
+        e.target.value = e.key;
     }
 }
 
-
 // get last word typed
-const checkWord = (inputWord) => {
-    const word = document.querySelector(`.env`).innerText;
-    console.log("Word: ", word)
-
-    if (inputWord == word) {
-        // wins
-        console.log("you win")
-
+const getWordColours = (inputWord) => {
+    if (inputWord == word)
         return ["green", "green", "green", "green", "green"];
-    }
 
     let inputWordArr = inputWord.split("");
-    console.log("Input: ", inputWordArr)
     let coloursArr = [];
 
     let letterPos = 0;
-
     for (let letter of inputWordArr) {
-        console.log(`Letter ${letterPos + 1}`, letter)
         let letterPosInWord = word.indexOf(letter);
         
-        console.log(letterPosInWord)
         if (letterPosInWord >= 0) {
             if (letterPosInWord == letterPos) {
-                console.log("green")
                 coloursArr[letterPos] = "green";
                 letterPos++;
                 continue;
             } else {
-                console.log("yellow")
                 coloursArr[letterPos] = "yellow";
                 letterPos++;
                 continue;
@@ -138,7 +108,6 @@ const checkWord = (inputWord) => {
 
     return coloursArr;
 };
-
 
 const changePosition = (pos) => {
     letterStep = pos;
