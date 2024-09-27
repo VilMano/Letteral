@@ -7,6 +7,9 @@ body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    display: flex;
+    width: 100%;
+    justify-content: center;
 }
 
 .container{
@@ -14,6 +17,7 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    max-width: 700px;
 }
 
 .words-wrapper{
@@ -24,7 +28,7 @@ body{
     display: flex;
 }
 
-.word input{
+.word div{
     height: 5rem;
     width: 5rem;
 
@@ -75,4 +79,73 @@ button{
 
 .yellow{
     background-color: rgba(255, 255, 41, 0.596)!important;
+}
+
+.keyboard{
+    display: flex;
+    padding: 1rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.row {
+    display: flex;
+    gap: .5rem;
+    padding: .5rem;
+}
+
+.button{
+    font-size: 2.5rem;
+    height: 3rem;
+    width: 100%;
+    background-color: rgb(86, 86, 167);
+    color: rgb(28, 28, 53);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: .3rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+
+    transition: .5s ease;
+}
+
+.button:hover{
+    background-color: rgb(28, 28, 53);
+    color: rgb(86, 86, 167);
+}
+
+.win{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 128, 0, 0.267);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 5rem;
+    color: white;
+}
+
+.lose{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(128, 0, 0, 0.267);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 5rem;
+    color: white;
 }
