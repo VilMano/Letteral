@@ -1,4 +1,5 @@
-let words = ["abbey",
+let words = [
+    "abbey",
     "about",
     "above",
     "abuse",

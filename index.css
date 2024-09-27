@@ -10,12 +10,13 @@ body{
     display: flex;
     width: 100%;
     justify-content: center;
+    height: 100vh;
 }
 
 .container{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     max-width: 700px;
 }
@@ -87,17 +88,20 @@ button{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
+
 }
 
 .row {
     display: flex;
-    gap: .5rem;
-    padding: .5rem;
+    gap: .2rem;
+    width: 100vw;
+    padding: .1rem 0;
 }
 
 .button{
-    font-size: 2.5rem;
-    height: 3rem;
+    font-size: 1rem;
+    /* height: 3rem; */
     width: 100%;
     background-color: rgb(86, 86, 167);
     color: rgb(28, 28, 53);
@@ -106,7 +110,7 @@ button{
     justify-content: center;
     align-items: center;
 
-    padding: .3rem 1rem;
+    padding: 1rem 1rem;
     border-radius: 5px;
     cursor: pointer;
 
